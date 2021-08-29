@@ -1,0 +1,32 @@
+ALGORITHM Sentence
+
+VAR
+sentence : STRING;
+i,L : INTEGER;
+nb_vowels : INTEGER := 0;
+nb_words : INTEGER := 1;
+
+BEGIN
+
+REPEAT
+ Write("Write a sentence which ends with a point :");
+ Read(sentence);
+ L := length(sentence);
+UNTIL (sentence <> "")&(sentence[L]==".")
+
+FOR i FROM 1 TO L DO
+	SWITCH (sentence[i]) DO
+	  case "a","e","i","u","o" : nb_vowels:=nb_vowels+1; BREAK;
+	  case " ": IF (sentence[i]==sentence[i+1]) THEN
+			      nb_words:=nb_words+1;
+			      i:=i+2;
+		        ELSE nb_words:=nb_words+1; BREAK;
+	  default : Write("Please try again.");
+	END_SWITCH
+END_FOR
+
+Write("The length of the sentence is : ", L);
+Write("The number of vowels is : ", nb_vowels);
+Write("The number of words is : ", nb_vowels);
+
+END
