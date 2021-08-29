@@ -9,20 +9,20 @@ nb_words : INTEGER := 1;
 BEGIN
 
 REPEAT
- Write("Write a sentence which ends with a point :");
- Read(sentence);
- L := length(sentence)-1;
-UNTIL (sentence <> "")AND(sentence[L]=".")
-
-FOR i FROM 0 TO L DO
+Write("Write a sentence which ends with a point : ");
+Read(sentence);
+L := length(sentence)-1;
+UNTIL (sentence <> "")AND(sentence[0] <> " ")AND(sentence[L]=".")
+FOR i FROM 0 TO L STEP step  DO
 	SWITCH (sentence[i]) DO
-	  case "a","e","i","u","o" : nb_vowels:=nb_vowels+1; BREAK;
-	  case " ": nb_words:=nb_words+1; BREAK;
+	case "a","e","i","u","o" : nb_vowels:=nb_vowels+1; BREAK;
+	case " ": IF (sentence[i+1]<>" ") THEN
+        nb_words:=nb_words+1;
+    END_IF
 	END_SWITCH
 END_FOR
 
 Write("The length of the sentence is : ", L+1);
 Write("The number of vowels is : ", nb_vowels);
 Write("The number of words is : ", nb_words);
-
 END
