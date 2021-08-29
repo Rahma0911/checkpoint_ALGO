@@ -11,22 +11,18 @@ BEGIN
 REPEAT
  Write("Write a sentence which ends with a point :");
  Read(sentence);
- L := length(sentence);
-UNTIL (sentence <> "")&(sentence[L]==".")
+ L := length(sentence)-1;
+UNTIL (sentence <> "")AND(sentence[L]=".")
 
-FOR i FROM 1 TO L DO
+FOR i FROM 0 TO L DO
 	SWITCH (sentence[i]) DO
 	  case "a","e","i","u","o" : nb_vowels:=nb_vowels+1; BREAK;
-	  case " ": IF (sentence[i]==sentence[i+1]) THEN
-			      nb_words:=nb_words+1;
-			      i:=i+2;
-		        ELSE nb_words:=nb_words+1; BREAK;
-	  default : Write("Please try again.");
+	  case " ": nb_words:=nb_words+1; BREAK;
 	END_SWITCH
 END_FOR
 
-Write("The length of the sentence is : ", L);
+Write("The length of the sentence is : ", L+1);
 Write("The number of vowels is : ", nb_vowels);
-Write("The number of words is : ", nb_vowels);
+Write("The number of words is : ", nb_words);
 
 END
